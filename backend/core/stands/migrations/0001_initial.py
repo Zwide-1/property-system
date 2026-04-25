@@ -27,7 +27,7 @@ class Migration(migrations.Migration):
                 ('name', models.CharField(max_length=100)),
                 ('latitude', models.FloatField()),
                 ('longitude', models.FloatField()),
-                ('image', models.ImageField(upload_to='properties/')),
+                ('image', models.ImageField(upload_to='stands/')),
             ],
         ),
         migrations.CreateModel(
@@ -36,7 +36,7 @@ class Migration(migrations.Migration):
                 ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
                 ('message', models.TextField()),
                 ('date', models.DateField()),
-                ('client', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='properties.client')),
+                ('client', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='stands.client')),
             ],
         ),
         migrations.CreateModel(
@@ -46,7 +46,7 @@ class Migration(migrations.Migration):
                 ('amount', models.DecimalField(decimal_places=2, max_digits=10)),
                 ('date', models.DateField()),
                 ('paid', models.BooleanField(default=False)),
-                ('client', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='properties.client')),
+                ('client', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='stands.client')),
             ],
         ),
     ]

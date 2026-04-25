@@ -41,7 +41,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     'rest_framework',
-    'properties',
+    'stands',
 ]
 
 MIDDLEWARE = [
@@ -82,7 +82,7 @@ WSGI_APPLICATION = 'core.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE':  'django.db.backends.postgresql',
-        'NAME': 'property_db',
+        'NAME': 'stand_db',
         'USER': 'postgres',
         'PASSWORD': 'mgonoNdo7',
         'HOST': 'localhost',

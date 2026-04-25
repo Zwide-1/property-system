@@ -6,7 +6,7 @@ from .serializers import StandSerializer, ClientSerializer, PaymentSerializer
 
 from django.http import JsonResponse
 
-def property_list(request):
+def stand_list(request):
     data = [
         {
             "id": 1,
