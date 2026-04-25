@@ -8,7 +8,7 @@ class Stand(models.Model):
     name = models.CharField(max_length=100)
     latitude = models.FloatField()
     longitude = models.FloatField()
-    image = models.ImageField(upload_to='properties/')
+    image = models.ImageField(upload_to='stands/')
 
 class Payment(models.Model):
     client = models.ForeignKey(Client, on_delete=models.CASCADE)

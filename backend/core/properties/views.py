@@ -4,6 +4,19 @@ from rest_framework import viewsets
 from .models import Stand, Client, Payment
 from .serializers import StandSerializer, ClientSerializer, PaymentSerializer
 
+from django.http import JsonResponse
+
+def property_list(request):
+    data = [
+        {
+            "id": 1,
+            "name": "Stand A1",
+            "gps": "-17.8292, 31.0522",
+            "image": "land.jpg"
+        }
+    ]
+    return JsonResponse(data, safe=False)
+
 class StandViewSet(viewsets.ModelViewSet):
     queryset = Stand.objects.all()
     serializer_class = StandSerializer
