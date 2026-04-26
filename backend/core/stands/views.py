@@ -13,6 +13,12 @@ def stand_list(request):
     serializer = StandSerializer(stands, many=True)
     return Response(serializer.data)
 
+# ✅ SIMPLE PAYMENTS API (for frontend display only)
+@api_view(['GET'])
+def payment_list(request):
+    payments = Payment.objects.all()
+    serializer = PaymentSerializer(payments, many=True)
+    return Response(serializer.data)
 
 # ✅ FULL CRUD APIs (for future use / admin dashboards)
 class StandViewSet(viewsets.ModelViewSet):
