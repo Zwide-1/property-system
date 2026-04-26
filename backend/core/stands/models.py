@@ -1,4 +1,5 @@
 from django.db import models
+from datetime import date
 
 class Client(models.Model):
     name = models.CharField(max_length=100)
@@ -27,6 +28,9 @@ class Payment(models.Model):
 
     def __str__(self):
         return f"{self.client.name} - {self.stand.name}"
+    @property
+    def is_overdue(self):
+        return not self.paid and self.due_date < date.today()
 
 class Alert(models.Model):
     client = models.ForeignKey(Client, on_delete=models.CASCADE)
