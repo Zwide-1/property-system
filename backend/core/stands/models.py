@@ -21,8 +21,9 @@ class Payment(models.Model):
     client = models.ForeignKey(Client, on_delete=models.CASCADE)
     stand = models.ForeignKey(Stand, on_delete=models.CASCADE)
     amount = models.DecimalField(max_digits=10, decimal_places=2)
-    date = models.DateField()
+    due_date = models.DateField()
     paid = models.BooleanField(default=False)
+    payment_date = models.DateField(null=True, blank=True)
 
     def __str__(self):
         return f"{self.client.name} - {self.stand.name}"
