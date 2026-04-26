@@ -1,46 +1,32 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import Map from "../components/Map";
 
 export default function Home() {
-  const [data, setData] = useState<any[]>([]);
+  const [stands, setStands] = useState([]);
 
   useEffect(() => {
-    fetch("http://127.0.0.1:8000/stands/")
-      .then((res) => res.json())
-      .then((data) => setData(data));
+    fetch("http://127.0.0.1:8000/api/stands/")
+      .then(res => res.json())
+      .then(data => setStands(data));
   }, []);
 
   return (
-    <div
-      className="min-h-screen bg-cover bg-center text-black"
-      style={{ backgroundImage: "url('/land.jpg')" }}
-    >
-      <div className="bg-black/50 min-h-screen p-6">
+    <div>
+      <h1>Stands</h1>
 
-        <h1 className="text-3xl font-bold mb-6">
-          Welcome Property System
-        </h1>
+      {stands.map((s: any, i) => (
+        <div key={i}>
+          <h2>{s.name}</h2>
+          <p>Lat: {s.latitude}</p>
+          <p>Lng: {s.longitude}</p>
 
-        <h2 className="text-xl font-semibold mb-4">
-          Stands
-        </h2>
+          {s.image && <img src={s.image} width="200" />}
 
-        {data.length === 0 ? (
-          <p>Loading data...</p>
-        ) : (
-          data.map((item: any) => (
-            <div
-              key={item.id}
-              className="bg-white text-black p-4 rounded shadow mb-4"
-            >
-              <h3 className="text-lg font-bold">{item.name}</h3>
-              <p>GPS: {item.gps}</p>
-            </div>
-          ))
-        )}
-
-      </div>
+          <Map lat={s.latitude} lng={s.longitude} />
+        </div>
+      ))}
     </div>
   );
 }
