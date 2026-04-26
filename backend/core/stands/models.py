@@ -9,6 +9,7 @@ class Client(models.Model):
 
 class Stand(models.Model):
     name = models.CharField(max_length=100)
+    description = models.TextField(blank=True)
     latitude = models.FloatField()
     longitude = models.FloatField()
     image = models.ImageField(upload_to='stands/', null=True, blank=True)
