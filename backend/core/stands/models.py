@@ -35,8 +35,12 @@ class Payment(models.Model):
 class Alert(models.Model):
     client = models.ForeignKey(Client, on_delete=models.CASCADE)
     stand = models.ForeignKey(Stand, on_delete=models.CASCADE, null=True, blank=True)
+    payment = models.ForeignKey(Payment, on_delete=models.CASCADE)
     message = models.TextField()
-    date = models.DateField()
+    sent_email = models.BooleanField(default=False)
+    sent_sms = models.BooleanField(default=False)
+    created_at = models.DateTimeField(auto_now_add=True)
+    
 
     def __str__(self):
         return f"Alert for {self.client.name}"
