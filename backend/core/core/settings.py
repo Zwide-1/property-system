@@ -128,3 +128,6 @@ USE_TZ = True
 STATIC_URL = 'static/'
 
 CORS_ALLOW_ALL_ORIGINS = True
+
+#email configuration (dev)
+EMAIL_BACKEND ='django.core.mail.backends.console.EmailBackend'
