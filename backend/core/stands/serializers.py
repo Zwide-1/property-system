@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import Stand, Client, Payment
+from .models import Stand, Client, Payment, Alert
 
 class StandSerializer(serializers.ModelSerializer):
     class Meta:
@@ -15,3 +15,11 @@ class PaymentSerializer(serializers.ModelSerializer):
     class Meta:
         model = Payment
         fields = '__all__'
+
+class AlertSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Alert
+        fields = '_all_'
+
+
+            

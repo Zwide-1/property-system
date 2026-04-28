@@ -33,9 +33,9 @@ class Payment(models.Model):
         return not self.paid and self.due_date < date.today()
 
 class Alert(models.Model):
-    client = models.ForeignKey(Client, on_delete=models.CASCADE)
+    client = models.ForeignKey(Client, on_delete=models.CASCADE, null=True, blank=True)
     stand = models.ForeignKey(Stand, on_delete=models.CASCADE, null=True, blank=True)
-    payment = models.ForeignKey(Payment, on_delete=models.CASCADE)
+    payment = models.ForeignKey(Payment, on_delete=models.CASCADE, null=True, blank=True)
     message = models.TextField()
     sent_email = models.BooleanField(default=False)
     sent_sms = models.BooleanField(default=False)

@@ -2,8 +2,9 @@ from rest_framework import viewsets
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 
-from .models import Stand, Client, Payment
-from .serializers import StandSerializer, ClientSerializer, PaymentSerializer
+
+from .models import Stand, Client, Payment, Alert
+from .serializers import StandSerializer, ClientSerializer, PaymentSerializer, AlertSerializer 
 
 
 # ✅ SIMPLE API (used by your frontend fetch)
@@ -20,6 +21,12 @@ def payment_list(request):
     serializer = PaymentSerializer(payments, many=True)
     return Response(serializer.data)
 
+@api_view(['GET'])
+def get_alerts(request):
+    alerts = Alert.objects.all().values()
+    serializer = AlertSerializer(alerts, many=True)
+    return Response(alerts)
+
 # ✅ FULL CRUD APIs (for future use / admin dashboards)
 class StandViewSet(viewsets.ModelViewSet):
     queryset = Stand.objects.all()
@@ -34,3 +41,7 @@ class ClientViewSet(viewsets.ModelViewSet):
 class PaymentViewSet(viewsets.ModelViewSet):
     queryset = Payment.objects.all()
     serializer_class = PaymentSerializer
+
+class AlertViewSet(viewsets.ModelViewSet):
+    querysey = Alert.objects.all()
+    serializer_class = AlertSerializer
