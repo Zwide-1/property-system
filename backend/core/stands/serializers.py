@@ -19,7 +19,7 @@ class PaymentSerializer(serializers.ModelSerializer):
 class AlertSerializer(serializers.ModelSerializer):
     class Meta:
         model = Alert
-        fields = '_all_'
+        fields = '__all__'
 
 
             

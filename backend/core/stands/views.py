@@ -23,9 +23,9 @@ def payment_list(request):
 
 @api_view(['GET'])
 def get_alerts(request):
-    alerts = Alert.objects.all().values()
+    alerts = Alert.objects.all()
     serializer = AlertSerializer(alerts, many=True)
-    return Response(alerts)
+    return Response(serializer.data)
 
 # ✅ FULL CRUD APIs (for future use / admin dashboards)
 class StandViewSet(viewsets.ModelViewSet):
@@ -43,5 +43,5 @@ class PaymentViewSet(viewsets.ModelViewSet):
     serializer_class = PaymentSerializer
 
 class AlertViewSet(viewsets.ModelViewSet):
-    querysey = Alert.objects.all()
+    queryset = Alert.objects.all()
     serializer_class = AlertSerializer
