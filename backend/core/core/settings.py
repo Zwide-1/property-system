@@ -138,5 +138,7 @@ CORS_ALLOW_ALL_ORIGINS = True
 #email configuration (dev)
 EMAIL_BACKEND ='django.core.mail.backends.console.EmailBackend'
 
+CELERY_BROKER_URL = 'redis://localhost:6379/0'
+CELERY_ACCEPT_CONTENT = ['json']
+CELERY_TASK_SERIALIZER = 'json'
 
-]
