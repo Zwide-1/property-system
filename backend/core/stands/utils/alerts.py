@@ -1,16 +1,20 @@
+from django.utils import timezone
 from django.core.mail import send_mail
 from twilio.rest import Client as TwilioClient
-from ..models import Alert
+from ..models import Payment, Alert
 import os
 
 
+# =========================
+# 📩 SEND ALERT (EMAIL + SMS + SAVE)
+# =========================
 def send_alert(client, payment):
     message = f"Dear {client.name}, your payment is overdue."
 
     email_sent = False
     sms_sent = False
 
-    # 📧 EMAIL
+    # 📧 EMAIL ALERT
     try:
         send_mail(
             "Missed Payment Alert",
@@ -23,14 +27,14 @@ def send_alert(client, payment):
     except Exception as e:
         print(f"Email failed: {e}")
 
-    # 📱 SMS
+    # 📱 SMS ALERT (Twilio)
     try:
         twilio_client = TwilioClient(
             os.getenv("TWILIO_ACCOUNT_SID"),
             os.getenv("TWILIO_AUTH_TOKEN")
         )
 
-        sms = twilio_client.messages.create(
+        twilio_client.messages.create(
             body=message,
             from_=os.getenv("TWILIO_PHONE"),
             to=client.phone
@@ -40,7 +44,7 @@ def send_alert(client, payment):
     except Exception as e:
         print(f"SMS failed: {e}")
 
-    # 🧾 SAVE ALERT
+    # 🧾 SAVE ALERT TO DATABASE
     Alert.objects.create(
         client=client,
         payment=payment,
@@ -48,3 +52,18 @@ def send_alert(client, payment):
         sent_email=email_sent,
         sent_sms=sms_sent
     )
+
+
+# =========================
+# ⏰ CHECK MISSED PAYMENTS
+# =========================
+def check_missed_payments():
+    today = timezone.now().date()
+
+    missed = Payment.objects.filter(
+        due_date__lt=today,
+        paid=False
+    )
+
+    for payment in missed:
+        send_alert(payment.client, payment)
