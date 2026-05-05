@@ -1,6 +1,8 @@
 from rest_framework import viewsets
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
+from django.http import JsonResponse
+from .models import SiteSettings
 
 
 from .models import Stand, Client, Payment, Alert
@@ -27,6 +29,20 @@ def get_alerts(request):
     serializer = AlertSerializer(alerts, many=True)
     return Response(serializer.data)
 
+def get_settings(request):
+    settings = SiteSettings.objects.first()
+
+    if not settings:
+        return JsonResponse({"error": "No settings found"}, status=404)
+    
+    data = {
+    "site_name": settings.site_name,
+    "background_color": settings.background_color,
+    "background_image": settings.background_image.url if settings.background_image else None
+}
+    
+    return JsonResponse(data)
+
 # ✅ FULL CRUD APIs (for future use / admin dashboards)
 class StandViewSet(viewsets.ModelViewSet):
     queryset = Stand.objects.all()
@@ -45,3 +61,7 @@ class PaymentViewSet(viewsets.ModelViewSet):
 class AlertViewSet(viewsets.ModelViewSet):
     queryset = Alert.objects.all()
     serializer_class = AlertSerializer
+
+
+
+
