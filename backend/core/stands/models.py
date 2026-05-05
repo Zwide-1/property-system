@@ -41,7 +41,14 @@ class Alert(models.Model):
     sent_sms = models.BooleanField(default=False)
     created_at = models.DateTimeField(auto_now_add=True)
     
-
     def __str__(self):
         return f"Alert for {self.client.name}"
+    
+class SiteSettings(models.Model):
+    site_name = models.CharField(max_length=100, default="Property App")
+    background_color = models.CharField(max_length=20, default="#ffffff")
+    background_image = models.ImageField(upload_to='backgrounds/', null=True, blank=True)
+
+    def __str__(self):
+        return self.site_name    
 
