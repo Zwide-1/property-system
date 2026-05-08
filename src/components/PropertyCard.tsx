@@ -1,5 +1,5 @@
 import { MapPin } from "lucide-react";
-import { Link } from "next/link";
+import Link from "next/link"; // ✅ FIXED IMPORT
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardFooter } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -16,7 +16,7 @@ export interface PropertyCardProps {
   status: PaymentStatus;
 }
 
-export function PropertyCard({
+export default function PropertyCard({
   id,
   image,
   title,
@@ -35,28 +35,31 @@ export function PropertyCard({
 
   return (
     <Card className="group overflow-hidden rounded-2xl border-border/60 shadow-md transition-all hover:-translate-y-1 hover:shadow-xl py-0 gap-0">
+      
+      {/* Image Section */}
       <div className="relative aspect-[4/3] overflow-hidden">
         <img
           src={image}
           alt={title}
-          width={800}
-          height={576}
-          loading="lazy"
           className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
         />
+
         <Badge
           className={`absolute right-3 top-3 rounded-full px-3 py-1 text-xs font-medium shadow ${
             isPaid
-              ? "bg-emerald-500 text-white hover:bg-emerald-500"
-              : "bg-amber-500 text-white hover:bg-amber-500"
+              ? "bg-emerald-500 text-white"
+              : "bg-amber-500 text-white"
           }`}
         >
           {status}
         </Badge>
       </div>
 
+      {/* Content */}
       <CardContent className="p-5">
-        <h3 className="line-clamp-1 text-lg font-semibold text-foreground">{title}</h3>
+        <h3 className="line-clamp-1 text-lg font-semibold text-foreground">
+          {title}
+        </h3>
 
         <div className="mt-2 flex items-center gap-1.5 text-sm text-muted-foreground">
           <MapPin className="h-4 w-4 shrink-0" />
@@ -70,9 +73,10 @@ export function PropertyCard({
         </div>
       </CardContent>
 
+      {/* Footer */}
       <CardFooter className="px-5 pb-5 pt-0">
         <Button asChild className="w-full rounded-xl">
-          <Link to="/properties/$propertyId" params={{ propertyId: id }}>
+          <Link href={`/properties/${id}`}>
             View Details
           </Link>
         </Button>
