@@ -1,3 +1,4 @@
+id="settings-model"
 from django.db import models
 from datetime import date
 
@@ -45,8 +46,8 @@ class Alert(models.Model):
         return f"Alert for {self.client.name}"
     
 class SiteSettings(models.Model):
-    site_name = models.CharField(max_length=100, default="Property App")
-    background_color = models.CharField(max_length=20, default="#ffffff")
+    site_name = models.CharField(max_length=255, default="Property System")
+    background_color = models.CharField(max_length=50, default="#ffffff")
     background_image = models.ImageField(upload_to='backgrounds/', null=True, blank=True)
 
     def __str__(self):
