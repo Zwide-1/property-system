@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import {
   LayoutDashboard,
   Building2,
@@ -8,11 +8,7 @@ import {
   Users,
   Settings,
   Bell,
-  Search,
   Menu,
-  Home,
-  TrendingUp,
-  TrendingDown,
 } from "lucide-react";
 
 import { properties } from "@/data/properties";
@@ -24,6 +20,7 @@ export default function AdminDashboard() {
   const paidClients = properties.filter((p) => p.status === "Paid").length;
   const paymentsDue = properties.filter((p) => p.status === "Pending");
   const paymentsDueAmount = paymentsDue.reduce((sum, p) => sum + p.price, 0);
+  const [alerts, setAlerts] = useState([]);
 
   const stats = [
     {
@@ -48,6 +45,12 @@ export default function AdminDashboard() {
       icon: Users,
     },
   ];
+  useEffect(() => {
+  fetch("http://127.0.0.1:8000/api/missed-payments/")
+    .then((res) => res.json())
+    .then((data) => setAlerts(data))
+    .catch((err) => console.error("Failed to load alerts:", err));
+}, []);
 
   return (
     <div className="min-h-screen flex bg-gray-100">
@@ -111,6 +114,29 @@ export default function AdminDashboard() {
               </div>
             ))}
           </div>
+
+          {/* Alerts Section */}
+<div className="mt-6 bg-white p-4 rounded shadow border-l-4 border-red-500">
+  <h2 className="font-bold mb-3 flex items-center gap-2">
+    ⚠️ Payment Alerts
+  </h2>
+
+  {alerts.length === 0 ? (
+    <p className="text-gray-500">No missed payments 🎉</p>
+  ) : (
+    alerts.map((alert: any, index) => (
+      <div
+        key={index}
+        className="flex justify-between py-2 border-b text-red-600"
+      >
+        <div>{alert.client}</div>
+        <div>${alert.amount}</div>
+        <div>Due: {alert.due_date}</div>
+      </div>
+    ))
+  )}
+</div>
+
 
           {/* Recent Properties */}
           <div className="mt-6 bg-white p-4 rounded shadow">

@@ -3,6 +3,7 @@ import Link from "next/link"; // ✅ FIXED IMPORT
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardFooter } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
+import Image from "next/image";
 
 export type PaymentStatus = "Paid" | "Pending";
 
@@ -37,11 +38,13 @@ export default function PropertyCard({
     <Card className="group overflow-hidden rounded-2xl border-border/60 shadow-md transition-all hover:-translate-y-1 hover:shadow-xl py-0 gap-0">
       
       {/* Image Section */}
-      <div className="relative aspect-[4/3] overflow-hidden">
-        <img
-          src={image}
+      <div className="relative aspect-4/3 overflow-hidden">
+        <Image
+          src="/house.jpg"
           alt={title}
-          className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+          width={500}
+          height={300}
+          className="object-cover w-full h-full"
         />
 
         <Badge

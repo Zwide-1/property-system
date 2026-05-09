@@ -5,6 +5,7 @@ import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 
+
 import {
   Form,
   FormField,
@@ -22,25 +23,30 @@ import {
   SelectItem,
 } from "@/components/ui/select";
 
+
 // -----------------------------
 // VALIDATION SCHEMA (ZOD)
 // -----------------------------
-const formSchema = z.object({
+export const propertySchema = z.object({
   title: z.string().min(3, "Title must be at least 3 characters"),
-  latitude: z
-    .number({ invalid_type_error: "Latitude must be a number" })
-    .min(-90)
-    .max(90),
-  longitude: z
-    .number({ invalid_type_error: "Longitude must be a number" })
-    .min(-180)
-    .max(180),
-  price: z.number().positive("Price must be positive"),
+
+  latitude: z.number()
+    .min(-90, "Latitude must be >= -90")
+    .max(90, "Latitude must be <= 90"),
+
+  longitude: z.number()
+    .min(-180, "Longitude must be >= -180")
+    .max(180, "Longitude must be <= 180"),
+
+  price: z.number()
+    .positive("Price must be positive"),
+
   paymentPlan: z.string().min(1, "Select a payment plan"),
+
   image: z.any().optional(),
 });
 
-type FormValues = z.infer<typeof formSchema>;
+export type PropertyFormValues = z.infer<typeof propertySchema>;
 
 // -----------------------------
 // COMPONENT
@@ -48,13 +54,14 @@ type FormValues = z.infer<typeof formSchema>;
 export default function PropertyForm() {
   const [imagePreview, setImagePreview] = React.useState<string | null>(null);
 
-  const form = useForm<FormValues>({
-    resolver: zodResolver(formSchema),
+  const form = useForm<PropertyFormValues>({
+    resolver: zodResolver(propertySchema),
     defaultValues: {
       title: "",
       latitude: 0,
       longitude: 0,
       price: 0,
+      image: "",
       paymentPlan: "",
     },
   });
@@ -62,7 +69,7 @@ export default function PropertyForm() {
   // -----------------------------
   // HANDLE SUBMIT
   // -----------------------------
-  function onSubmit(values: FormValues) {
+  function onSubmit(values: PropertyFormValues) {
     console.log("FORM DATA:", values);
     alert("Form submitted successfully (frontend only)");
   }
@@ -208,11 +215,11 @@ export default function PropertyForm() {
 
               {/* PREVIEW */}
               {imagePreview && (
-                <img
-                  src={imagePreview}
-                  alt="Preview"
-                  className="mt-2 w-40 h-40 object-cover rounded"
-                />
+               <img
+               src={imagePreview}
+               alt="Preview"
+               className="mt-2 w-40 h-40 object-cover rounded"
+               /> 
               )}
 
               <FormMessage />

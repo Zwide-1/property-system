@@ -2,10 +2,17 @@
 
 import * as React from "react";
 
-export function Label({ children, ...props }: React.LabelHTMLAttributes<HTMLLabelElement>) {
+export const Label = React.forwardRef<
+  HTMLLabelElement,
+  React.LabelHTMLAttributes<HTMLLabelElement>
+>(({ className, ...props }, ref) => {
   return (
-    <label className="text-sm font-medium" {...props}>
-      {children}
-    </label>
+    <label
+      ref={ref}
+      className={`text-sm font-medium ${className ?? ""}`}
+      {...props}
+    />
   );
-}
+});
+
+Label.displayName = "Label";
