@@ -31,7 +31,10 @@ class Payment(models.Model):
         return f"{self.client.name} - {self.stand.name}"
     @property
     def is_overdue(self):
-        return not self.paid and self.due_date < date.today()
+        from datetime import date
+        return self.paid is False and self.due_date < date.today()
+    def needs_alerts(self):
+        return self.is_overdue
 
 class Alert(models.Model):
     client = models.ForeignKey(Client, on_delete=models.CASCADE, null=True, blank=True)
