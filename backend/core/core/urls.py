@@ -20,6 +20,7 @@ from django.urls import path, include
 from rest_framework.routers import DefaultRouter
 from stands.views import get_settings 
 from stands.views import StandViewSet, ClientViewSet, PaymentViewSet, AlertViewSet
+from stands.views import missed_payments_view
 
 router = DefaultRouter()
 router.register(r'stands', StandViewSet)
@@ -31,4 +32,5 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/', include(router.urls)),
     path('api/settings/', get_settings),
+    path('api/missed-payments/', missed_payments_view),
 ]

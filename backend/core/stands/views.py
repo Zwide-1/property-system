@@ -4,6 +4,7 @@ from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from django.http import JsonResponse
 from .models import SiteSettings
+from .utils import check_missed_payments
 
 
 from .models import Stand, Client, Payment, Alert
@@ -23,6 +24,20 @@ def payment_list(request):
     payments = Payment.objects.all()
     serializer = PaymentSerializer(payments, many=True)
     return Response(serializer.data)
+
+# Missed payment
+@api_view(['GET'])
+def missed_payments_view(request):
+    missed = check_missed_payments()
+    data = [
+        {
+            "client": str(p.client),
+            "amount": p.amount,
+            "due_date": p.due_date
+        }
+        for p in missed
+    ]
+    return Response(data)
 
 @api_view(['GET'])
 def get_alerts(request):
