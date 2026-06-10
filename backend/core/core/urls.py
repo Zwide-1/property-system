@@ -18,6 +18,8 @@ id="settings-url"
 from django.contrib import admin
 from django.urls import path, include
 from rest_framework.routers import DefaultRouter
+from django.conf import settings
+from django.conf.urls.static import static
 from stands.views import get_settings 
 from stands.views import StandViewSet, ClientViewSet, PaymentViewSet, AlertViewSet
 from stands.views import missed_payments_view
@@ -34,3 +36,9 @@ urlpatterns = [
     path('api/settings/', get_settings),
     path('api/missed-payments/', missed_payments_view),
 ]
+
+if settings.DEBUG:
+    urlpatterns += static(
+        settings.MEDIA_URL,
+        document_root=settings.MEDIA_ROOT
+    )
