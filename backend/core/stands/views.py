@@ -7,8 +7,8 @@ from .models import SiteSettings
 from .utils import check_missed_payments
 
 
-from .models import Stand, Client, Payment, Alert
-from .serializers import StandSerializer, ClientSerializer, PaymentSerializer, AlertSerializer 
+from .models import Stand, Client, Allocation, Payment, Alert
+from .serializers import StandSerializer, ClientSerializer, AllocationSerializer, PaymentSerializer, AlertSerializer 
 
 
 # ✅ SIMPLE API (used by your frontend fetch)
@@ -64,11 +64,13 @@ class StandViewSet(viewsets.ModelViewSet):
     queryset = Stand.objects.all()
     serializer_class = StandSerializer
 
-
 class ClientViewSet(viewsets.ModelViewSet):
     queryset = Client.objects.all()
-    serializer_class = ClientSerializer
+    serializer_class = ClientSerializer 
 
+class AllocationViewSet(viewsets.ModelViewSet):
+    queryset = Allocation.objects.all()
+    serializer_class = AllocationSerializer
 
 class PaymentViewSet(viewsets.ModelViewSet):
     queryset = Payment.objects.all()
