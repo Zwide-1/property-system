@@ -17,22 +17,16 @@ Including another URLconf
 id="settings-url"
 from django.contrib import admin
 from django.urls import path, include
-from rest_framework.routers import DefaultRouter
 from django.conf import settings
 from django.conf.urls.static import static
 from stands.views import get_settings 
 from stands.views import StandViewSet, ClientViewSet, PaymentViewSet, AlertViewSet
 from stands.views import missed_payments_view
 
-router = DefaultRouter()
-router.register(r'stands', StandViewSet)
-router.register(r'clients', ClientViewSet)
-router.register(r'payments', PaymentViewSet)
-router.register(r'alerts', AlertViewSet, basename='alerts')
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('api/', include(router.urls)),
+    path('api/', include('stands.urls')),
     path('api/settings/', get_settings),
     path('api/missed-payments/', missed_payments_view),
 ]
@@ -42,4 +36,3 @@ if settings.DEBUG:
         settings.MEDIA_URL,
         document_root=settings.MEDIA_ROOT
     )
-    

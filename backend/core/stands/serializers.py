@@ -26,5 +26,10 @@ class AlertSerializer(serializers.ModelSerializer):
         model = Alert
         fields = '__all__'
 
+class PropertyDetailsSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Stand
+        fields = "__all__"
+
 
             
