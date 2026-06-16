@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import Link from "next/link";
 import Map from "../components/Map";
 import PropertyCard from "@/components/PropertyCard";
 
@@ -41,6 +42,16 @@ export default function Home() {
       <h1 className="text-white text-4xl mb-6">
         {settings.site_name}
       </h1>
+
+      {/* Dashboard Button */}
+      <div className="mb-6">
+        <Link
+          href="/dashboard"
+          className="inline-block bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700"
+        >
+          Dashboard
+        </Link>
+      </div>
 
       {/* Stands Section */}
       <h2 className="text-white text-2xl mb-6">

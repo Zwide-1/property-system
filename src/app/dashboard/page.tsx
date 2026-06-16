@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 export default function Dashboard() {
   const [stands, setStands] = useState([]);
   const [clients, setClients] = useState([]);
+  const [allocations, setAllocations] = useState([]);
   const [payments, setPayments] = useState([]);
   const [alerts, setAlerts] = useState([]);
 
@@ -17,6 +18,10 @@ export default function Dashboard() {
       .then((res) => res.json())
       .then(setClients);
 
+fetch("http://127.0.0.1:8000/api/allocations/")
+  .then((res) => res.json())
+  .then(setAllocations);
+
     fetch("http://127.0.0.1:8000/api/payments/")
       .then((res) => res.json())
       .then(setPayments);
@@ -26,7 +31,7 @@ export default function Dashboard() {
       .then(setAlerts);
   }, []);
 
-  const allocatedStands = payments.length;
+  const allocatedStands = allocations.length;
 
   const availableStands =
     stands.length - allocatedStands;
@@ -94,12 +99,11 @@ export default function Dashboard() {
             {overdueClients}
           </p>
         </div>
-
       </div>
 
       {/* Recent Alerts */}
+            {/* Recent Alerts */}
       <div className="border rounded-lg p-4">
-
         <h2 className="text-2xl font-semibold mb-4">
           Recent Alerts
         </h2>
@@ -108,6 +112,7 @@ export default function Dashboard() {
           <thead>
             <tr>
               <th className="border p-2">Client</th>
+              <th className="border p-2">Stand</th>
               <th className="border p-2">Message</th>
               <th className="border p-2">Date</th>
             </tr>
@@ -117,7 +122,11 @@ export default function Dashboard() {
             {alerts.map((alert: any) => (
               <tr key={alert.id}>
                 <td className="border p-2">
-                  {alert.client}
+                  {alert.client_name}
+                </td>
+
+                <td className="border p-2">
+                  {alert.stand_number}
                 </td>
 
                 <td className="border p-2">
@@ -125,16 +134,15 @@ export default function Dashboard() {
                 </td>
 
                 <td className="border p-2">
-                  {alert.created_at}
+                  {new Date(
+                    alert.created_at
+                  ).toLocaleDateString()}
                 </td>
               </tr>
             ))}
           </tbody>
-
         </table>
-
       </div>
-
     </div>
   );
 }

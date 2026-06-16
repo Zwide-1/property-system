@@ -22,9 +22,29 @@ class PaymentSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 class AlertSerializer(serializers.ModelSerializer):
+    client_name = serializers.CharField(
+        source="client.name",
+        read_only=True
+    )
+
+    stand_number = serializers.CharField(
+        source="stand.stand",
+        read_only=True
+    )
+
     class Meta:
         model = Alert
-        fields = '__all__'
+        fields = [
+            "id",
+            "client",
+            "stand",
+            "client_name",
+            "stand_number",
+            "message",
+            "sent_email",
+            "sent_sms",
+            "created_at",
+        ]
 
 class PropertyDetailsSerializer(serializers.ModelSerializer):
     class Meta:
