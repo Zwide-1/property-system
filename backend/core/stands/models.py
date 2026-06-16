@@ -80,10 +80,34 @@ class Alert(models.Model):
         return f"Alert for {self.client.name}"
     
 class SiteSettings(models.Model):
-    site_name = models.CharField(max_length=255, default="Property System")
-    background_color = models.CharField(max_length=50, default="#ffffff")
-    background_image = models.ImageField(upload_to='backgrounds/', null=True, blank=True)
+    site_name = models.CharField(
+        max_length=255,
+        default="Property System")
+    company_name = models.CharField(
+        max_length=255,
+        default="Property Development Company")
+    company_logo = models.ImageField(
+        upload_to="logos/",
+        null=True,
+        blank=True)
+    contact_email = models.EmailField(
+        blank=True,
+        null=True)
+    contact_phone = models.CharField(
+        max_length=50,
+        blank=True,
+        null=True)
+    address = models.TextField(
+        blank=True,
+        null=True)
+    background_color = models.CharField(
+        max_length=50,
+        default="#ffffff")
+    background_image = models.ImageField(
+        upload_to="backgrounds/",
+        null=True,
+        blank=True)
 
     def __str__(self):
-        return self.site_name    
+        return self.site_name  
 

@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import Map from "../components/Map";
 import PropertyCard from "@/components/PropertyCard";
+import Footer from "@/components/Footer";
 
 export default function Home() {
   const [stands, setStands] = useState([]);
@@ -38,10 +39,26 @@ export default function Home() {
         padding: "20px",
       }}
     >
-      {/* Site Title */}
-      <h1 className="text-white text-4xl mb-6">
-        {settings.site_name}
-      </h1>
+      {/* Company Branding */}
+<div className="mb-8 flex items-center gap-4">
+  {settings.company_logo && (
+    <img
+      src={`http://127.0.0.1:8000${settings.company_logo}`}
+      alt="Company Logo"
+      className="h-20 w-20 object-contain"
+    />
+  )}
+
+  <div>
+    <h1 className="text-4xl font-bold text-white">
+      {settings.company_name}
+    </h1>
+
+    <p className="text-white text-lg">
+      {settings.site_name}
+    </p>
+  </div>
+</div>
 
       {/* Dashboard Button */}
       <div className="mb-6">
@@ -78,6 +95,8 @@ export default function Home() {
               status={s.status || "Pending"}
             />
 
+<Footer settings={settings} />
+
             {/* Map BELOW each card */}
             <div className="mt-2">
               <Map lat={s.latitude} lng={s.longitude} />
@@ -86,5 +105,6 @@ export default function Home() {
         ))}
       </div>
     </div>
+
   );
 }

@@ -3,11 +3,12 @@
 import { useEffect, useState } from "react";
 
 export default function Dashboard() {
-  const [stands, setStands] = useState([]);
-  const [clients, setClients] = useState([]);
-  const [allocations, setAllocations] = useState([]);
-  const [payments, setPayments] = useState([]);
-  const [alerts, setAlerts] = useState([]);
+  const [stands, setStands] = useState<any[]>([]);
+  const [clients, setClients] = useState<any[]>([]);
+  const [allocations, setAllocations] = useState<any[]>([]);
+  const [payments, setPayments] = useState<any[]>([]);
+  const [alerts, setAlerts] = useState<any[]>([]);
+  const [settings, setSettings] = useState<any>(null);
 
   useEffect(() => {
     fetch("http://127.0.0.1:8000/api/stands/")
@@ -18,9 +19,9 @@ export default function Dashboard() {
       .then((res) => res.json())
       .then(setClients);
 
-fetch("http://127.0.0.1:8000/api/allocations/")
-  .then((res) => res.json())
-  .then(setAllocations);
+    fetch("http://127.0.0.1:8000/api/allocations/")
+      .then((res) => res.json())
+      .then(setAllocations);
 
     fetch("http://127.0.0.1:8000/api/payments/")
       .then((res) => res.json())
@@ -29,6 +30,10 @@ fetch("http://127.0.0.1:8000/api/allocations/")
     fetch("http://127.0.0.1:8000/api/alerts/")
       .then((res) => res.json())
       .then(setAlerts);
+
+    fetch("http://127.0.0.1:8000/api/settings/")
+      .then((res) => res.json())
+      .then(setSettings);
   }, []);
 
   const allocatedStands = allocations.length;
@@ -51,49 +56,68 @@ fetch("http://127.0.0.1:8000/api/allocations/")
   return (
     <div className="p-6">
 
-      <h1 className="text-4xl font-bold mb-8">
-        Property Dashboard
-      </h1>
+      {/* Dashboard Header Branding */}
+      {settings && (
+        <div className="flex items-center gap-4 mb-8">
+          {settings.company_logo && (
+            <img
+              src={`http://127.0.0.1:8000${settings.company_logo}`}
+              alt="Company Logo"
+              className="h-16 w-16 object-contain"
+            />
+          )}
+
+          <div>
+            <h1 className="text-3xl font-bold">
+              {settings.company_name}
+            </h1>
+
+            <p className="text-gray-600">
+              Property Management Dashboard
+            </p>
+          </div>
+        </div>
+      )}
 
       {/* Dashboard Cards */}
       <div className="grid md:grid-cols-3 gap-6 mb-10">
 
-        <div className="border rounded-lg p-4">
+        <div className="border rounded-lg p-4 shadow-sm">
           <h3>Total Stands</h3>
           <p className="text-3xl font-bold">
             {stands.length}
           </p>
         </div>
 
-        <div className="border rounded-lg p-4">
+        <div className="border rounded-lg p-4 shadow-sm">
           <h3>Allocated Stands</h3>
           <p className="text-3xl font-bold">
             {allocatedStands}
           </p>
         </div>
 
-        <div className="border rounded-lg p-4">
+        <div className="border rounded-lg p-4 shadow-sm">
           <h3>Available Stands</h3>
           <p className="text-3xl font-bold">
             {availableStands}
           </p>
         </div>
 
-        <div className="border rounded-lg p-4">
+        <div className="border rounded-lg p-4 shadow-sm">
           <h3>Total Clients</h3>
           <p className="text-3xl font-bold">
             {clients.length}
           </p>
         </div>
 
-        <div className="border rounded-lg p-4">
+        <div className="border rounded-lg p-4 shadow-sm">
           <h3>Outstanding Balance</h3>
           <p className="text-3xl font-bold">
-            ${outstandingBalance}
+            ${outstandingBalance.toLocaleString()}
           </p>
         </div>
 
-        <div className="border rounded-lg p-4">
+        <div className="border rounded-lg p-4 shadow-sm">
           <h3>Overdue Clients</h3>
           <p className="text-3xl font-bold">
             {overdueClients}
@@ -102,8 +126,7 @@ fetch("http://127.0.0.1:8000/api/allocations/")
       </div>
 
       {/* Recent Alerts */}
-            {/* Recent Alerts */}
-      <div className="border rounded-lg p-4">
+      <div className="border rounded-lg p-4 shadow-sm">
         <h2 className="text-2xl font-semibold mb-4">
           Recent Alerts
         </h2>
@@ -119,30 +142,44 @@ fetch("http://127.0.0.1:8000/api/allocations/")
           </thead>
 
           <tbody>
-            {alerts.map((alert: any) => (
-              <tr key={alert.id}>
-                <td className="border p-2">
-                  {alert.client_name}
-                </td>
+            {alerts.length > 0 ? (
+              alerts.map((alert: any) => (
+                <tr key={alert.id}>
+                  <td className="border p-2">
+                    {alert.client_name || "N/A"}
+                  </td>
 
-                <td className="border p-2">
-                  {alert.stand_number}
-                </td>
+                  <td className="border p-2">
+                    {alert.stand_number || "N/A"}
+                  </td>
 
-                <td className="border p-2">
-                  {alert.message}
-                </td>
+                  <td className="border p-2">
+                    {alert.message}
+                  </td>
 
-                <td className="border p-2">
-                  {new Date(
-                    alert.created_at
-                  ).toLocaleDateString()}
+                  <td className="border p-2">
+                    {alert.created_at
+                      ? new Date(
+                          alert.created_at
+                        ).toLocaleDateString()
+                      : "N/A"}
+                  </td>
+                </tr>
+              ))
+            ) : (
+              <tr>
+                <td
+                  colSpan={4}
+                  className="border p-4 text-center"
+                >
+                  No alerts found
                 </td>
               </tr>
-            ))}
+            )}
           </tbody>
         </table>
       </div>
+
     </div>
   );
 }

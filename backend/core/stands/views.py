@@ -137,8 +137,13 @@ def get_settings(request):
     
     data = {
     "site_name": settings.site_name,
+    "company_name": settings.company_name,
+    "company_logo": settings.company_logo.url if settings.company_logo else None,
+    "contact_email": settings.contact_email,
+    "contact_phone": settings.contact_phone,
+    "address": settings.address,
     "background_color": settings.background_color,
-    "background_image": settings.background_image.url if settings.background_image else None
+    "background_image": settings.background_image.url if settings.background_image else None,
 }
     
     return JsonResponse(data)
