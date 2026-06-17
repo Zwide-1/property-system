@@ -14,6 +14,7 @@ from pathlib import Path
 
 from dotenv import load_dotenv
 import os
+import dj_database_url
 
 load_dotenv()
 
@@ -87,14 +88,9 @@ WSGI_APPLICATION = 'core.wsgi.application'
 # https://docs.djangoproject.com/en/6.0/ref/settings/#databases
 
 DATABASES = {
-    'default': {
-        'ENGINE':  'django.db.backends.postgresql',
-        'NAME': 'stand_db',
-        'USER': 'postgres',
-        'PASSWORD': 'mgonoNdo7',
-        'HOST': 'localhost',
-        'PORT': '5432',
-    }
+    "default": dj_database_url.config(
+        default=os.getenv("DATABASE_URL")
+    )
 }
 
 
