@@ -12,14 +12,14 @@ export default function Home() {
 
   // Fetch stands
   useEffect(() => {
-    fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/stands/`)
+    fetch(`${process.env.NEXT_PUBLIC_API_URL}/stands/`)
       .then((res) => res.json())
       .then((data) => setStands(data));
   }, []);
 
   // Fetch site settings
   useEffect(() => {
-    fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/settings/`)
+    fetch(`${process.env.NEXT_PUBLIC_API_URL}/settings/`)
       .then((res) => res.json())
       .then((data) => setSettings(data));
   }, []);
@@ -31,7 +31,7 @@ export default function Home() {
       style={{
         backgroundColor: settings.background_color,
         backgroundImage: settings.background_image
-          ? `url(http://property-system-1.onrender.com${settings.background_image})`
+          ? `url(https://property-system-1.onrender.com${settings.background_image})`
           : "none",
         backgroundSize: "cover",
         backgroundPosition: "center",
@@ -43,7 +43,7 @@ export default function Home() {
 <div className="mb-8 flex items-center gap-4">
   {settings.company_logo && (
     <img
-      src={`http://property-system-1.onrender.com${settings.company_logo}`}
+      src={`https://property-system-1.onrender.com${settings.company_logo}`}
       alt="Company Logo"
       className="h-20 w-20 object-contain"
     />
@@ -82,10 +82,7 @@ export default function Home() {
             <PropertyCard
               id={String(s.id)}
               image={
-                s.image
-                  ? `http://property-system-1.onrender.com${s.image}`
-                  : "https://via.placeholder.com/800x600"
-              }
+                s.image || "https://via.placeholder.com/800x600"}
               title={s.name}
               price={s.price || 0}
               coordinates={{
@@ -95,7 +92,6 @@ export default function Home() {
               status={s.status || "Pending"}
             />
 
-<Footer settings={settings} />
 
             {/* Map BELOW each card */}
             <div className="mt-2">
@@ -103,6 +99,7 @@ export default function Home() {
             </div>
           </div>
         ))}
+        <Footer settings={settings} />
       </div>
     </div>
 

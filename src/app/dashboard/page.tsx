@@ -61,7 +61,7 @@ export default function Dashboard() {
         <div className="flex items-center gap-4 mb-8">
           {settings.company_logo && (
             <img
-              src={`http://property-system-1.onrender.com${settings.company_logo}`}
+              src={`https://property-system-1.onrender.com${settings.company_logo}`}
               alt="Company Logo"
               className="h-16 w-16 object-contain"
             />

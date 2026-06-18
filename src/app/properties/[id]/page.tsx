@@ -14,7 +14,7 @@ export default function PropertyDetails() {
   useEffect(() => {
     if (!id) return;
 
-    fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/property-details/${id}/`)
+    fetch(`${process.env.NEXT_PUBLIC_API_URL}/property-details/${id}/`)
       .then((res) => res.json())
       .then((result) => setData(result))
       .catch((err) => console.error(err));
@@ -48,7 +48,7 @@ export default function PropertyDetails() {
 
       {/* Property Image */}
       <img
-        src={`http://property-system-1.onrender.com${stand.image}`}
+        src={stand.image}
         alt={stand.name}
         className="w-full h-96 object-cover rounded-lg mb-8"
       />

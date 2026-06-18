@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { useState, useEffect } from "react";
 import {
   LayoutDashboard,
@@ -101,30 +102,30 @@ export default function AdminDashboard() {
         <div className="p-4 font-bold text-lg">Admin Panel</div>
 
         <nav className="space-y-2 p-4">
-          <div className="flex items-center gap-2 cursor-pointer">
+          <Link href="/dashboard" className="flex items-center gap-2 cursor-pointer">
             <LayoutDashboard size={18} />
             Dashboard
-          </div>
+          </Link>
 
-          <div className="flex items-center gap-2 cursor-pointer">
+          <Link href="/properties" className="flex items-center gap-2 cursor-pointer">
             <Building2 size={18} />
             Properties
-          </div>
+          </Link>
 
-          <div className="flex items-center gap-2 cursor-pointer">
+          <Link href="/payments" className="flex items-center gap-2 cursor-pointer">
             <CreditCard size={18} />
             Payments
-          </div>
+          </Link>
 
-          <div className="flex items-center gap-2 cursor-pointer">
+          <Link href="/clients" className="flex items-center gap-2 cursor-pointer">
             <Users size={18} />
             Clients
-          </div>
+          </Link>
 
-          <div className="flex items-center gap-2 cursor-pointer">
+          <Link href="/settings" className="flex items-center gap-2 cursor-pointer">
             <Settings size={18} />
             Settings
-          </div>
+          </Link>
         </nav>
       </aside>
 
