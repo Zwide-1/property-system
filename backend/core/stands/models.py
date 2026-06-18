@@ -8,18 +8,28 @@ class Stand(models.Model):
     size_sqm = models.DecimalField(
         max_digits=10,
         decimal_places=2)
+    
     price = models.DecimalField(
         max_digits=12,
         decimal_places=2,
         default=0.00)
+    
     deposit_required = models.DecimalField(
         max_digits=12,
         decimal_places=2)
+    
     description = models.TextField()
+
     latitude = models.FloatField()
     longitude = models.FloatField()
-    image = models.ImageField(
-        upload_to="stands/")
+
+    image = models.URLField(
+    blank=True,
+    null=True
+)
+    
+    def save(self, *args, **kwargs):
+        super().save(*args, **kwargs)
 
     def __str__(self):
         return f"{self.stand} - {self.name}"
@@ -83,30 +93,35 @@ class SiteSettings(models.Model):
     site_name = models.CharField(
         max_length=255,
         default="Property System")
+    
     company_name = models.CharField(
         max_length=255,
-        default="Property Development Company")
-    company_logo = models.ImageField(
-        upload_to="logos/",
-        null=True,
-        blank=True)
+        default="Zwide Property Development Company")
+    
+    company_logo = models.URLField(
+        blank=True,
+        null=True)
+    
     contact_email = models.EmailField(
         blank=True,
         null=True)
+    
     contact_phone = models.CharField(
         max_length=50,
         blank=True,
         null=True)
+    
     address = models.TextField(
         blank=True,
         null=True)
+    
     background_color = models.CharField(
         max_length=50,
         default="#ffffff")
-    background_image = models.ImageField(
-        upload_to="backgrounds/",
-        null=True,
-        blank=True)
+    
+    background_image = models.URLField(
+        blank=True,
+        null=True)
 
     def __str__(self):
         return self.site_name  
