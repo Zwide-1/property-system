@@ -71,7 +71,7 @@ def property_details(request, stand_id):
             "description": stand.description,
             "latitude": stand.latitude,
             "longitude": stand.longitude,
-            "image": stand.image.url if stand.image else None
+            "image": stand.image
         },
 
         "client": {
@@ -138,14 +138,13 @@ def get_settings(request):
     data = {
     "site_name": settings.site_name,
     "company_name": settings.company_name,
-    "company_logo": settings.company_logo.url if settings.company_logo else None,
+    "company_logo": settings.company_logo,
     "contact_email": settings.contact_email,
     "contact_phone": settings.contact_phone,
     "address": settings.address,
     "background_color": settings.background_color,
-    "background_image": settings.background_image.url if settings.background_image else None,
+    "background_image": settings.background_image,
 }
-    
     return JsonResponse(data)
 
 # ✅ FULL CRUD APIs (for future use / admin dashboards)
