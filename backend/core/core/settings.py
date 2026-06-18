@@ -11,10 +11,11 @@ https://docs.djangoproject.com/en/6.0/ref/settings/
 """
 
 from pathlib import Path
-
 from dotenv import load_dotenv
 import os
 import dj_database_url
+from django.conf import settings
+from django.conf.urls.static import static
 
 load_dotenv()
 
@@ -49,6 +50,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django_celery_beat',
+    'cloudinary',
+    'cloudinary_storage',
     
 
     'rest_framework',
@@ -155,6 +158,7 @@ STATIC_ROOT = BASE_DIR / "staticfiles"
 
 MEDIA_URL = 'media/'
 MEDIA_ROOT = BASE_DIR / 'media'
+
 
 CORS_ALLOWED_ORIGINS = [
     "https://property-system-5gbkdhiom-zwide.vercel.app",
