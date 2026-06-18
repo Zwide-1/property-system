@@ -33,7 +33,7 @@ DEBUG = os.getenv("DEBUG", "False") == "True"
 
 ALLOWED_HOSTS = os.getenv(
     "ALLOWED_HOSTS",
-    "property-system-1.onrender.com,localhost,127.0.0.1"
+    "property-system-1.onrender.com,property-system-5gbkdhiom-zwide.vercel.app,localhost,127.0.0.1"
 ).split(",")
 
 
@@ -156,7 +156,9 @@ STATIC_ROOT = BASE_DIR / "staticfiles"
 MEDIA_URL = 'media/'
 MEDIA_ROOT = BASE_DIR / 'media'
 
-CORS_ALLOW_ALL_ORIGINS = True
+CORS_ALLOWED_ORIGINS = [
+    "https://property-system-5gbkdhiom-zwide.vercel.app",
+]
 
 #email configuration (dev)
 EMAIL_BACKEND ='django.core.mail.backends.console.EmailBackend'
