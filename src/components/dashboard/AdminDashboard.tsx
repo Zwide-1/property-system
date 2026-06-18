@@ -33,7 +33,7 @@ export default function AdminDashboard() {
 
   // Fetch properties
   useEffect(() => {
-    fetch("http://127.0.0.1:8000/api/properties/")
+    fetch(`${process.env.NEXT_PUBLIC_API_URL}/stands/`)
       .then((res) => res.json())
       .then((data) => setProperties(data))
       .catch((err) => console.error("Error fetching properties:", err))
@@ -42,7 +42,7 @@ export default function AdminDashboard() {
 
   // Fetch alerts
   useEffect(() => {
-    fetch("http://127.0.0.1:8000/api/missed-payments/")
+    fetch(`${process.env.NEXT_PUBLIC_API_URL}/missed-payments/`)
       .then((res) => res.json())
       .then((data) => setAlerts(data))
       .catch((err) => console.error("Failed to load alerts:", err));

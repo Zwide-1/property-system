@@ -11,27 +11,27 @@ export default function Dashboard() {
   const [settings, setSettings] = useState<any>(null);
 
   useEffect(() => {
-    fetch("http://127.0.0.1:8000/api/stands/")
+    fetch(`${process.env.NEXT_PUBLIC_API_URL}/stands/`)
       .then((res) => res.json())
       .then(setStands);
 
-    fetch("http://127.0.0.1:8000/api/clients/")
+    fetch(`${process.env.NEXT_PUBLIC_API_URL}/clients/`)
       .then((res) => res.json())
       .then(setClients);
 
-    fetch("http://127.0.0.1:8000/api/allocations/")
+    fetch(`${process.env.NEXT_PUBLIC_API_URL}/allocations/`)
       .then((res) => res.json())
       .then(setAllocations);
 
-    fetch("http://127.0.0.1:8000/api/payments/")
+    fetch(`${process.env.NEXT_PUBLIC_API_URL}/payments/`)
       .then((res) => res.json())
       .then(setPayments);
 
-    fetch("http://127.0.0.1:8000/api/alerts/")
+    fetch(`${process.env.NEXT_PUBLIC_API_URL}/alerts/`)
       .then((res) => res.json())
       .then(setAlerts);
 
-    fetch("http://127.0.0.1:8000/api/settings/")
+    fetch(`${process.env.NEXT_PUBLIC_API_URL}/settings/`)
       .then((res) => res.json())
       .then(setSettings);
   }, []);
@@ -61,7 +61,7 @@ export default function Dashboard() {
         <div className="flex items-center gap-4 mb-8">
           {settings.company_logo && (
             <img
-              src={`http://127.0.0.1:8000${settings.company_logo}`}
+              src={`http://property-system-1.onrender.com${settings.company_logo}`}
               alt="Company Logo"
               className="h-16 w-16 object-contain"
             />

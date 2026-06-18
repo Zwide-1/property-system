@@ -25,7 +25,7 @@ export default function PaymentsPage() {
   // GET PAYMENTS
   // =========================
   const fetchPayments = () => {
-    fetch("http://127.0.0.1:8000/api/payments/")
+    fetch(`${process.env.NEXT_PUBLIC_API_URL}/payments/`)
       .then((res) => res.json())
       .then((data) => {
         console.log("API DATA:", data);
@@ -42,7 +42,7 @@ export default function PaymentsPage() {
   // ADD PAYMENT
   // =========================
   async function addPayment() {
-    const res = await fetch("http://127.0.0.1:8000/api/payments/", {
+    const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/payments/`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

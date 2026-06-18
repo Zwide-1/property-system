@@ -12,14 +12,14 @@ export default function Home() {
 
   // Fetch stands
   useEffect(() => {
-    fetch("http://127.0.0.1:8000/api/stands/")
+    fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/stands/`)
       .then((res) => res.json())
       .then((data) => setStands(data));
   }, []);
 
   // Fetch site settings
   useEffect(() => {
-    fetch("http://127.0.0.1:8000/api/settings/")
+    fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/settings/`)
       .then((res) => res.json())
       .then((data) => setSettings(data));
   }, []);
@@ -31,7 +31,7 @@ export default function Home() {
       style={{
         backgroundColor: settings.background_color,
         backgroundImage: settings.background_image
-          ? `url(http://127.0.0.1:8000${settings.background_image})`
+          ? `url(http://property-system-1.onrender.com${settings.background_image})`
           : "none",
         backgroundSize: "cover",
         backgroundPosition: "center",
@@ -43,7 +43,7 @@ export default function Home() {
 <div className="mb-8 flex items-center gap-4">
   {settings.company_logo && (
     <img
-      src={`http://127.0.0.1:8000${settings.company_logo}`}
+      src={`http://property-system-1.onrender.com${settings.company_logo}`}
       alt="Company Logo"
       className="h-20 w-20 object-contain"
     />
@@ -83,7 +83,7 @@ export default function Home() {
               id={String(s.id)}
               image={
                 s.image
-                  ? `http://127.0.0.1:8000${s.image}`
+                  ? `http://property-system-1.onrender.com${s.image}`
                   : "https://via.placeholder.com/800x600"
               }
               title={s.name}

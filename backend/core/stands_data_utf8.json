@@ -1,0 +1,329 @@
+﻿[
+{
+  "model": "stands.stand",
+  "pk": 1,
+  "fields": {
+    "stand": "ST001",
+    "name": "Ben Tlou",
+    "size_sqm": "250.00",
+    "price": "10000.00",
+    "deposit_required": "3000.00",
+    "description": "250sqm metres, virgin land",
+    "latitude": -17.8252,
+    "longitude": 31.0335,
+    "image": "stands/stand_1.png"
+  }
+},
+{
+  "model": "stands.stand",
+  "pk": 2,
+  "fields": {
+    "stand": "ST002",
+    "name": "Benny Ndlovu",
+    "size_sqm": "350.00",
+    "price": "15000.00",
+    "deposit_required": "5000.00",
+    "description": "350sqm metres, serviced stand",
+    "latitude": -17.93,
+    "longitude": 31.1035,
+    "image": "stands/stand_20.png"
+  }
+},
+{
+  "model": "stands.stand",
+  "pk": 3,
+  "fields": {
+    "stand": "ST003",
+    "name": "Johny Ndwandwe",
+    "size_sqm": "400.00",
+    "price": "28000.00",
+    "deposit_required": "7000.00",
+    "description": "350sqm metres, virgin land",
+    "latitude": -18.086,
+    "longitude": 29.305,
+    "image": "stands/stand_3_KP3JNNb.png"
+  }
+},
+{
+  "model": "stands.stand",
+  "pk": 4,
+  "fields": {
+    "stand": "ST020",
+    "name": "Noma Tlou",
+    "size_sqm": "5000.00",
+    "price": "30000.00",
+    "deposit_required": "10000.00",
+    "description": "500sqm, serviced, built structure",
+    "latitude": -19.003,
+    "longitude": 9.056,
+    "image": "stands/stand_20_BtJoEVk.png"
+  }
+},
+{
+  "model": "stands.stand",
+  "pk": 5,
+  "fields": {
+    "stand": "ST024",
+    "name": "Noxy Singama",
+    "size_sqm": "500.00",
+    "price": "30000.00",
+    "deposit_required": "10000.00",
+    "description": "500sqm, built, serviced",
+    "latitude": -18.2,
+    "longitude": 8.0,
+    "image": "stands/stand_24.png"
+  }
+},
+{
+  "model": "stands.client",
+  "pk": 1,
+  "fields": {
+    "name": "Ben Tlou",
+    "phone_number": "+263775168406",
+    "email": "tloub@gmail.com",
+    "national_id": "39-038686D39"
+  }
+},
+{
+  "model": "stands.client",
+  "pk": 2,
+  "fields": {
+    "name": "Benny Ndlovu",
+    "phone_number": "+263775176439",
+    "email": "benny@outlook.com",
+    "national_id": "39-039042Q39"
+  }
+},
+{
+  "model": "stands.client",
+  "pk": 3,
+  "fields": {
+    "name": "Noxy Singama",
+    "phone_number": "+263715633824",
+    "email": "singama1@gmail.com",
+    "national_id": "79-152026K73"
+  }
+},
+{
+  "model": "stands.client",
+  "pk": 4,
+  "fields": {
+    "name": "Johny Ndwandwe",
+    "phone_number": "+263773143621",
+    "email": "ndwe2@gmail.com",
+    "national_id": "53-056358D53"
+  }
+},
+{
+  "model": "stands.client",
+  "pk": 5,
+  "fields": {
+    "name": "Noma Tlou",
+    "phone_number": "+27724953144",
+    "email": "tlouN@gmail.com",
+    "national_id": "08-644999E21"
+  }
+},
+{
+  "model": "stands.allocation",
+  "pk": 1,
+  "fields": {
+    "stand": 1,
+    "client": 1,
+    "allocation_date": "2020-08-04"
+  }
+},
+{
+  "model": "stands.allocation",
+  "pk": 2,
+  "fields": {
+    "stand": 2,
+    "client": 2,
+    "allocation_date": "2025-01-30"
+  }
+},
+{
+  "model": "stands.allocation",
+  "pk": 3,
+  "fields": {
+    "stand": 3,
+    "client": 4,
+    "allocation_date": "2025-06-09"
+  }
+},
+{
+  "model": "stands.allocation",
+  "pk": 4,
+  "fields": {
+    "stand": 4,
+    "client": 5,
+    "allocation_date": "2025-06-08"
+  }
+},
+{
+  "model": "stands.allocation",
+  "pk": 5,
+  "fields": {
+    "stand": 5,
+    "client": 3,
+    "allocation_date": "2025-12-26"
+  }
+},
+{
+  "model": "stands.payment",
+  "pk": 6,
+  "fields": {
+    "client": 1,
+    "stand": 1,
+    "allocation": 1,
+    "amount": "500.00",
+    "due_date": "2026-06-16",
+    "paid": false,
+    "payment_date": null
+  }
+},
+{
+  "model": "stands.payment",
+  "pk": 7,
+  "fields": {
+    "client": 2,
+    "stand": 2,
+    "allocation": 2,
+    "amount": "500.00",
+    "due_date": "2026-06-01",
+    "paid": true,
+    "payment_date": "2026-06-01"
+  }
+},
+{
+  "model": "stands.payment",
+  "pk": 8,
+  "fields": {
+    "client": 4,
+    "stand": 3,
+    "allocation": 3,
+    "amount": "700.00",
+    "due_date": "2026-06-16",
+    "paid": true,
+    "payment_date": "2026-06-14"
+  }
+},
+{
+  "model": "stands.payment",
+  "pk": 9,
+  "fields": {
+    "client": 5,
+    "stand": 4,
+    "allocation": 4,
+    "amount": "1000.00",
+    "due_date": "2026-06-16",
+    "paid": false,
+    "payment_date": null
+  }
+},
+{
+  "model": "stands.payment",
+  "pk": 10,
+  "fields": {
+    "client": 3,
+    "stand": 5,
+    "allocation": 5,
+    "amount": "700.00",
+    "due_date": "2026-06-16",
+    "paid": false,
+    "payment_date": null
+  }
+},
+{
+  "model": "stands.payment",
+  "pk": 11,
+  "fields": {
+    "client": 1,
+    "stand": 1,
+    "allocation": 1,
+    "amount": "700.00",
+    "due_date": "2026-06-16",
+    "paid": false,
+    "payment_date": null
+  }
+},
+{
+  "model": "stands.payment",
+  "pk": 12,
+  "fields": {
+    "client": 2,
+    "stand": 2,
+    "allocation": 2,
+    "amount": "500.00",
+    "due_date": "2026-06-15",
+    "paid": true,
+    "payment_date": "2026-06-15"
+  }
+},
+{
+  "model": "stands.payment",
+  "pk": 13,
+  "fields": {
+    "client": 4,
+    "stand": 3,
+    "allocation": 3,
+    "amount": "650.00",
+    "due_date": "2026-06-12",
+    "paid": false,
+    "payment_date": null
+  }
+},
+{
+  "model": "stands.alert",
+  "pk": 6,
+  "fields": {
+    "client": 1,
+    "stand": 1,
+    "payment": 11,
+    "message": "Payment of $700 is due on 16/06/2026",
+    "sent_email": true,
+    "sent_sms": false,
+    "created_at": "2026-06-15T16:59:40.537Z"
+  }
+},
+{
+  "model": "stands.alert",
+  "pk": 7,
+  "fields": {
+    "client": 2,
+    "stand": 2,
+    "payment": 12,
+    "message": "Thank you for your payment.",
+    "sent_email": true,
+    "sent_sms": false,
+    "created_at": "2026-06-15T17:01:04.584Z"
+  }
+},
+{
+  "model": "stands.alert",
+  "pk": 8,
+  "fields": {
+    "client": 4,
+    "stand": 3,
+    "payment": 13,
+    "message": "You have outstanding payment of $650, please make payment today to avoid interest accrual.",
+    "sent_email": true,
+    "sent_sms": false,
+    "created_at": "2026-06-15T17:02:46.966Z"
+  }
+},
+{
+  "model": "stands.sitesettings",
+  "pk": 3,
+  "fields": {
+    "site_name": "Property Management System",
+    "company_name": "Zwide Property Development Company",
+    "company_logo": "logos/land.jpg",
+    "contact_email": "zwidesolutions@outlook.com",
+    "contact_phone": "+263784120676",
+    "address": "3589 Gwabalanda\r\nLuveve",
+    "background_color": "grey",
+    "background_image": "backgrounds/land.jpg"
+  }
+}
+]
