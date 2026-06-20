@@ -102,31 +102,48 @@ export default function AdminDashboard() {
         <div className="p-4 font-bold text-lg">Admin Panel</div>
 
         <nav className="space-y-2 p-4">
-          <Link href="/dashboard" className="flex items-center gap-2 cursor-pointer">
-            <LayoutDashboard size={18} />
-            Dashboard
-          </Link>
 
-          <Link href="/properties" className="flex items-center gap-2 cursor-pointer">
-            <Building2 size={18} />
-            Properties
-          </Link>
+  <Link
+    href="/dashboard"
+    className="flex items-center gap-2 hover:text-blue-600"
+  >
+    <LayoutDashboard size={18} />
+    Dashboard
+  </Link>
 
-          <Link href="/payments" className="flex items-center gap-2 cursor-pointer">
-            <CreditCard size={18} />
-            Payments
-          </Link>
+  <Link
+    href="/properties"
+    className="flex items-center gap-2 hover:text-blue-600"
+  >
+    <Building2 size={18} />
+    Properties
+  </Link>
 
-          <Link href="/clients" className="flex items-center gap-2 cursor-pointer">
-            <Users size={18} />
-            Clients
-          </Link>
+  <Link
+    href="/payments"
+    className="flex items-center gap-2 hover:text-blue-600"
+  >
+    <CreditCard size={18} />
+    Payments
+  </Link>
 
-          <Link href="/settings" className="flex items-center gap-2 cursor-pointer">
-            <Settings size={18} />
-            Settings
-          </Link>
-        </nav>
+  <Link
+    href="/clients"
+    className="flex items-center gap-2 hover:text-blue-600"
+  >
+    <Users size={18} />
+    Clients
+  </Link>
+
+  <Link
+    href="/settings"
+    className="flex items-center gap-2 hover:text-blue-600"
+  >
+    <Settings size={18} />
+    Settings
+  </Link>
+
+</nav>
       </aside>
 
       {/* Main Content */}

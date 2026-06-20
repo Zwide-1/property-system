@@ -31,7 +31,7 @@ export default function Home() {
       style={{
         backgroundColor: settings.background_color,
         backgroundImage: settings.background_image
-          ? `url(https://property-system-1.onrender.com${settings.background_image})`
+          ? `url(${settings.background_image})`
           : "none",
         backgroundSize: "cover",
         backgroundPosition: "center",
@@ -43,7 +43,7 @@ export default function Home() {
 <div className="mb-8 flex items-center gap-4">
   {settings.company_logo && (
     <img
-      src={`https://property-system-1.onrender.com${settings.company_logo}`}
+      src={settings.company_logo}
       alt="Company Logo"
       className="h-20 w-20 object-contain"
     />
@@ -81,8 +81,11 @@ export default function Home() {
           <div key={s.id}>
             <PropertyCard
               id={String(s.id)}
+
               image={
-                s.image || "https://via.placeholder.com/800x600"}
+                s.image 
+                ? s.image
+                : "https://via.placeholder.com/800x600"}
               title={s.name}
               price={s.price || 0}
               coordinates={{
