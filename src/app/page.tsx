@@ -5,6 +5,11 @@ import Link from "next/link";
 import Map from "../components/Map";
 import PropertyCard from "@/components/PropertyCard";
 import Footer from "@/components/Footer";
+import { redirect } from "next/navigation";
+
+export default function Home() {
+  redirect("/login");
+}
 
 export default function Home() {
   const [stands, setStands] = useState([]);
