@@ -10,6 +10,11 @@ export default function Home() {
   const [stands, setStands] = useState([]);
   const [settings, setSettings] = useState<any>(null);
 
+console.log(
+  "API URL:",
+  process.env.NEXT_PUBLIC_API_URL
+);
+
   // Fetch stands
   useEffect(() => {
     fetch(`${process.env.NEXT_PUBLIC_API_URL}/stands/`)
