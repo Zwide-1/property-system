@@ -69,7 +69,7 @@ export default function Dashboard() {
 
       {/* Dashboard Header Branding */}
       {settings && (
-        <div className="flex items-center gap-4 mb-8">
+        <div className="flex items-center gap-4 mb-8 bg-white/90 p-4 rounded-lg">
           {settings.company_logo && (
             <img
               src={settings.company_logo}
@@ -93,42 +93,42 @@ export default function Dashboard() {
       {/* Dashboard Cards */}
       <div className="grid md:grid-cols-3 gap-6 mb-10">
 
-        <div className="border rounded-lg p-4 shadow-sm">
+        <div className="border rounded-lg p-4 shadow-sm bg-white">
           <h3>Total Stands</h3>
           <p className="text-3xl font-bold">
             {stands.length}
           </p>
         </div>
 
-        <div className="border rounded-lg p-4 shadow-sm">
+        <div className="border rounded-lg p-4 shadow-sm bg-white">
           <h3>Allocated Stands</h3>
           <p className="text-3xl font-bold">
             {allocatedStands}
           </p>
         </div>
 
-        <div className="border rounded-lg p-4 shadow-sm">
+        <div className="border rounded-lg p-4 shadow-sm bg-white">
           <h3>Available Stands</h3>
           <p className="text-3xl font-bold">
             {availableStands}
           </p>
         </div>
 
-        <div className="border rounded-lg p-4 shadow-sm">
+        <div className="border rounded-lg p-4 shadow-sm bg-white">
           <h3>Total Clients</h3>
           <p className="text-3xl font-bold">
             {clients.length}
           </p>
         </div>
 
-        <div className="border rounded-lg p-4 shadow-sm">
+        <div className="border rounded-lg p-4 shadow-sm bg-white">
           <h3>Outstanding Balance</h3>
           <p className="text-3xl font-bold">
             ${outstandingBalance.toLocaleString()}
           </p>
         </div>
 
-        <div className="border rounded-lg p-4 shadow-sm">
+        <div className="border rounded-lg p-4 shadow-sm bg-white">
           <h3>Overdue Clients</h3>
           <p className="text-3xl font-bold">
             {overdueClients}
@@ -137,7 +137,7 @@ export default function Dashboard() {
       </div>
 
       {/* Recent Alerts */}
-      <div className="border rounded-lg p-4 shadow-sm">
+      <div className="border rounded-lg p-4 shadow-sm bg-white">
         <h2 className="text-2xl font-semibold mb-4">
           Recent Alerts
         </h2>
