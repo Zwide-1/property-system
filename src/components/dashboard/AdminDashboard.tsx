@@ -120,6 +120,13 @@ export default function AdminDashboard() {
   </Link>
 
   <Link
+    href="/properties/new"
+    className="flex items-center gap-2 hover:text-green-600"
+  >
+    ➕ Add Property
+  </Link>
+
+  <Link
     href="/payments"
     className="flex items-center gap-2 hover:text-blue-600"
   >
@@ -128,11 +135,25 @@ export default function AdminDashboard() {
   </Link>
 
   <Link
+    href="/payments/new"
+    className="flex items-center gap-2 hover:text-green-600"
+  >
+    ➕ Add Payment
+  </Link>
+
+  <Link
     href="/clients"
     className="flex items-center gap-2 hover:text-blue-600"
   >
     <Users size={18} />
     Clients
+  </Link>
+
+  <Link
+    href="/clients/new"
+    className="flex items-center gap-2 hover:text-green-600"
+  >
+    ➕ Add Client
   </Link>
 
   <Link
