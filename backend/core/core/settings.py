@@ -34,7 +34,7 @@ DEBUG = os.getenv("DEBUG", "False") == "True"
 
 ALLOWED_HOSTS = os.getenv(
     "ALLOWED_HOSTS",
-    "property-system-1.onrender.com,property-system-5gbkdhiom-zwide.vercel.app,localhost,127.0.0.1"
+    "property-system-1.onrender.com,property-system-roan.vercel.app,property-system-5gbkdhiom-zwide.vercel.app,property-system-d1xr8o27y-zwide.vercel.app,localhost,127.0.0.1"
 ).split(",")
 
 
@@ -58,10 +58,9 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'corsheaders.middleware.CorsMiddleware',
-
+    'django.middleware.common.CommonMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
-    'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
@@ -164,7 +163,7 @@ STATICFILES_STORAGE = (
 
 
 CORS_ALLOWED_ORIGINS = [
-    "https://property-system-5gbkdhiom-zwide.vercel.app",
+    "https://property-system-roan.vercel.app",
 ]
 
 #email configuration (dev)
