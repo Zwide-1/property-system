@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 export default function ClientsPage() {
   const [clients, setClients] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
+  
 
   useEffect(() => {
     fetch(`${process.env.NEXT_PUBLIC_API_URL}/clients/`)

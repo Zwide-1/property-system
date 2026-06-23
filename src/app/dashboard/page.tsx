@@ -54,14 +54,25 @@ export default function Dashboard() {
     );
 
   return (
-    <div className="p-6">
+  <div
+    className="p-6 min-h-screen"
+    style={{
+      backgroundImage:
+        settings?.background_image
+          ? `url(${settings.background_image})`
+          : "none",
+      backgroundSize: "cover",
+      backgroundPosition: "center",
+      backgroundRepeat: "no-repeat",
+    }}
+  >
 
       {/* Dashboard Header Branding */}
       {settings && (
         <div className="flex items-center gap-4 mb-8">
           {settings.company_logo && (
             <img
-              src={`https://property-system-1.onrender.com${settings.company_logo}`}
+              src={settings.company_logo}
               alt="Company Logo"
               className="h-16 w-16 object-contain"
             />
